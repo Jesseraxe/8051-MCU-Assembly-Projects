@@ -1,0 +1,47 @@
+ORG 0000H
+
+MOV A, P0
+CPL A
+ANL A, #0F0H
+RLC A
+MOV P1.1, C ;A
+RLC A
+MOV P1.2, C ;B
+RLC A
+MOV P1.3, C ;C
+RLC A
+MOV P1.4, C ;D
+
+F1:
+;F1 = A+B'C+D
+MOV C, P1.2
+CPL C
+ANL C, P1.3
+ORL C, P1.2
+ORL C, P1.4
+CPL C
+MOV P2.1, C
+
+F2:
+;F2 = (A⊕C)D + A'D'
+;F2 = (A'C + AC')D + A'D'
+MOV C, P1.1
+CPL C
+MOV P1.5, C ; A'
+MOV C, P1.3
+CPL C
+MOV P1.6, C ; C'
+MOV C, P1.4
+CPL C
+MOV P1.7, C ; D'
+MOV C, P1.3
+ANL C, P1.5
+ORL C, P1.1
+ANL C, P1.6
+ANL C, P1.4
+ORL C, P1.5
+ANL C, P1.7
+CPL C
+MOV P2.0, C
+
+END

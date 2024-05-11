@@ -1,0 +1,41 @@
+;LAB 5.1
+ORG 00H
+	MOV R0, #0
+	MOV R1, #0
+	MOV R2, #0
+LOOP:
+	INC R0
+	CJNE R0, #09, LOOP
+	MOV R0, #0
+	INC R1
+	CJNE R1, #09, LOOP
+	mov R1, #0
+	INC R2
+	CJNE R2, #09, LOOP
+	MOV R2, #0
+	MOV R1, #0
+	MOV R0, #0
+PART2:
+	CLR A
+	MOV R0, #01H
+	MOV R1, #02H
+	MOV R2, #03H
+	MOV R3, #04H
+	MOV A, R0
+	ADD A, R3
+	MOV R4, A
+	CLR A
+	MOV A, R1
+	ADDC A, R2
+	MOV R5, A
+	CLR A
+	MOV A, R2
+	ADDC A, R1
+	MOV R6, A
+	CLR A
+	MOV A, R3
+	ADDC A, R0
+	MOV R7, A
+END
+	
+	
